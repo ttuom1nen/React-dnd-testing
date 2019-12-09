@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Sidebar from "./components/Sidebar";
+import Content from "./components/Content";
+import { DndProvider } from "react-dnd";
+import Backend from "react-dnd-html5-backend";
+import ItemTypes from "./ItemTypes";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ display: "flex", flexDirection: "row" }}>
+      <DndProvider backend={Backend}>
+        <div style={{ padding: "20px", width: "300px" }}>
+          <Sidebar />
+        </div>
+        <div style={{ padding: "20px" }}>
+          <Content />
+        </div>
+      </DndProvider>
     </div>
   );
 }
