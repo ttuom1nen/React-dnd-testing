@@ -7,8 +7,10 @@ const emptySlotStyle = {
   position: "relative",
   height: "220px",
   width: "220px",
-  border: "1px solid silver",
-  margin: "10px"
+  margin: "10px",
+  border: "1px solid white",
+  borderRadius: "3px",
+  boxSizing: "border-box",
 };
 
 const emptyContainerStyle = {
@@ -30,15 +32,20 @@ const EmptySlot = ({
   isDropped
 }) => {
   const isActive = isOver && canDrop;
-  let backgroundColor = "whitesmoke";
+  let additionalStyling = {
+    backgroundColor: "#fafafa",
+    border: ""
+  }
+
   if (isActive) {
-    backgroundColor = "silver";
+    additionalStyling.border = "1px solid rgba(0,0,0,0.15)";
+    additionalStyling.backgroundColor = "#F9F9F9";
   } else if (canDrop) {
-    backgroundColor = "whitesmoke";
+    additionalStyling.backgroundColor = "#f7f7f7";
   }
 
   return connectDropTarget(
-    <div style={{ ...emptySlotStyle, backgroundColor }}>
+    <div style={{ ...emptySlotStyle, ...additionalStyling }}>
       <div style={emptyContainerStyle}>
         {lastDroppedItem !== null ? (
           <Dashlet
@@ -51,14 +58,6 @@ const EmptySlot = ({
             isOver={isOver}
           />
         ) : null}
-
-        {/*isActive
-        ? "Release to drop"
-      : `This dustbin accepts: ${accepts.join(", ")}`*/}
-
-        {/*lastDroppedItem && (
-        <p>Last dropped: {JSON.stringify(lastDroppedItem)}</p>
-      )*/}
       </div>
     </div>
   );
