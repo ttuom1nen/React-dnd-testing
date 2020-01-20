@@ -1,6 +1,6 @@
 import React from "react";
 import { DragSource } from "react-dnd";
-import Iframe from "./Iframe"
+import Iframe from "./Iframe";
 
 const dashletStyle = {
   position: "absolute",
