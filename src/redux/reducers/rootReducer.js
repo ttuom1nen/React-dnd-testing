@@ -1,7 +1,9 @@
-function rootReducer(state = [], action) {
+const initialState = { list: [] };
+
+function rootReducer(state = initialState, action) {
   switch (action.type) {
-    case "FETCH_POSTS":
-      return action.payload;
+    case "FETCH_USERS":
+      return { ...state, list: [...action.payload] };
 
     default:
       return state;

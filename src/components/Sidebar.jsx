@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
 import ListItem from "./ListItem";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUsers } from "../redux/actions/fetchAction";
 
 const Sidebar = () => {
-  const [list, setList] = useState([]);
-
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then(response => response.json())
-      .then(json => setList(json));
-
-    return () => {};
-  }, []);
+  const dispatch = useDispatch();
+  dispatch(fetchUsers());
+  const list = useSelector(state => state.list);
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>

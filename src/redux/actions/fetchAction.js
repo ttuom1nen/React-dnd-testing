@@ -1,12 +1,12 @@
 export const fetchUsers = () => {
   return async function(dispatch, getState) {
-    const response = await fetch("https://jsonplaceholder.typicode.com/todos")
+    await fetch("https://jsonplaceholder.typicode.com/users")
       .then(response => response.json())
-      .then(json => console.log(json));
-
-    dispatch({
-      type: "FETCH_USERS",
-      payload: response.data
-    });
+      .then(json =>
+        dispatch({
+          type: "FETCH_USERS",
+          payload: json
+        })
+      );
   };
 };
